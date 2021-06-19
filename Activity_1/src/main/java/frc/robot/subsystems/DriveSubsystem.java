@@ -46,9 +46,9 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
-  public void arcadeDrive(double foward, double turn) {
-    leftPower = foward + turn;
-    rightPower = foward - turn;
+  public void arcadeDrive(double forward, double turn) {
+    leftPower = forward + turn;
+    rightPower = forward - turn;
   }
 
   @Override
