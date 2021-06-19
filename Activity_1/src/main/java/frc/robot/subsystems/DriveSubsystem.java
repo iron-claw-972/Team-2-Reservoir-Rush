@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.DriveConstants;
@@ -17,27 +17,27 @@ import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
   
   //TODO: Set the motor ports in Constants.java
-  /*TODO: Set the motor to the right type (Talon, CAN, etc.)
-  / (If you have a Victor you're lucky, no changes needed)
-  /  Otherwise just change the "new PWMVictorSPX" part */
+  //TODO: Set the motor to the right type (Talon, CAN, etc.)
 
   // The motors on the left side of the drive.
   private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(new PWMVictorSPX(DriveConstants.kLeftMotor1Port),
-                               new PWMVictorSPX(DriveConstants.kLeftMotor2Port));
+      new SpeedControllerGroup(new WPI_TalonFX(DriveConstants.kLeftMotor1Port),
+                               new WPI_TalonFX(DriveConstants.kLeftMotor2Port));
 
   // The motors on the right side of the drive.
   private final SpeedControllerGroup m_rightMotors =
-      new SpeedControllerGroup(new PWMVictorSPX(DriveConstants.kRightMotor1Port),
-                               new PWMVictorSPX(DriveConstants.kRightMotor2Port));
+      new SpeedControllerGroup(new WPI_TalonFX(DriveConstants.kRightMotor1Port),
+                               new WPI_TalonFX(DriveConstants.kRightMotor2Port));
 
-  // The robot's drive
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
+  private double leftPower = 0;
+  private double rightPower = 0;
+  
   /**
    * Creates a new DriveSubsystem.
    */
   public DriveSubsystem() {
+    m_rightMotors.setInverted(true);
   }
 
   /**
@@ -46,7 +46,14 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
-  public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+  public void arcadeDrive(double foward, double turn) {
+    leftPower = foward + turn;
+    rightPower = foward - turn;
+  }
+
+  @Override
+  public void periodic(){
+    m_leftMotors.set(leftPower);
+    m_rightMotors.set(rightPower);
   }
 }
