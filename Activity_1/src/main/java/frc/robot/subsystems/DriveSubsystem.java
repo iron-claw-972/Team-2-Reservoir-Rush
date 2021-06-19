@@ -29,9 +29,6 @@ public class DriveSubsystem extends SubsystemBase {
       new SpeedControllerGroup(new WPI_TalonFX(DriveConstants.kRightMotor1Port),
                                new WPI_TalonFX(DriveConstants.kRightMotor2Port));
 
-
-  private double leftPower = 0;
-  private double rightPower = 0;
   
   /**
    * Creates a new DriveSubsystem.
@@ -47,13 +44,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double forward, double turn) {
-    leftPower = forward + turn;
-    rightPower = forward - turn;
-  }
-
-  @Override
-  public void periodic(){
-    m_leftMotors.set(leftPower);
-    m_rightMotors.set(rightPower);
+    m_leftMotors.set(forward + turn);
+    m_rightMotors.set(forward - turn);
   }
 }
