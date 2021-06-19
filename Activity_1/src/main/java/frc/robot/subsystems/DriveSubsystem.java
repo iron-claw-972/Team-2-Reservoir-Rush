@@ -17,7 +17,9 @@ import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
   
   //TODO: Set the motor ports in Constants.java
-  //TODO: Set the motor to the right type (Talon, CAN, etc.) (If you have a SPX you're lucky, no changes needed)
+  /*TODO: Set the motor to the right type (Talon, CAN, etc.)
+  / (If you have a Victor you're lucky, no changes needed)
+  /  Otherwise just change the "new PWMVictorSPX" part */
 
   // The motors on the left side of the drive.
   private final SpeedControllerGroup m_leftMotors =
