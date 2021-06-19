@@ -11,32 +11,27 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
-/**
- * A command to drive the robot with joystick input (passed in as {@link DoubleSupplier}s). Written
- * explicitly for pedagogical purposes - actual code should inline a command this simple with {@link
- * edu.wpi.first.wpilibj2.command.RunCommand}.
- */
-public class DefaultDrive extends CommandBase {
+public class TankDrive extends CommandBase {
   private final DriveSubsystem m_drive;
-  private final DoubleSupplier m_forward;
-  private final DoubleSupplier m_turn;
+  private final DoubleSupplier m_leftPow;
+  private final DoubleSupplier m_rightPow;
 
   /**
-   * Creates a new DefaultDrive.
+   * Creates a new TankDrive.
    *
    * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param turn The control input for turning
+   * @param leftPow The control input for driving the left motors
+   * @param rightPow The control input for driving the left motors
    */
-  public DefaultDrive(DriveSubsystem subsystem, DoubleSupplier forward, DoubleSupplier turn) {
+  public TankDrive(DriveSubsystem subsystem, DoubleSupplier leftPow, DoubleSupplier rightPow) {
     m_drive = subsystem;
-    m_forward = forward;
-    m_turn = turn;
+    m_leftPow = leftPow;
+    m_rightPow = rightPow;
     addRequirements(m_drive);
   }
 
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_forward.getAsDouble(), m_turn.getAsDouble());
+    m_drive.tankDrive(m_leftPow.getAsDouble(), m_rightPow.getAsDouble());
   }
 }

@@ -7,10 +7,8 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-
 import frc.robot.Constants.DriveConstants;
-import frc.robot.commands.DefaultDrive;
+import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,21 +25,18 @@ public class RobotContainer {
 
   // The driver's controller 
   //TODO: go to Constants.java to set the right port
-  Joystick m_driverController = new Joystick(DriveConstants.kControllerPort);
+  Joystick m_controller = new Joystick(DriveConstants.kControllerPort);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
 
-    // Configure default commands
-    // Set the default drive command to split-stick arcade drive
+    // Configure default commands (will be run continously when nothing else is scheduled)
     m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
-        new DefaultDrive(
+        new TankDrive(
             m_robotDrive,
-            () -> m_driverController.getY(GenericHID.Hand.kLeft),
-            () -> m_driverController.getX(GenericHID.Hand.kRight)));
+            () -> m_controller.getRawAxis(DriveConstants.kLeftJoyAxis),
+            () -> m_controller.getRawAxis(DriveConstants.kRightJoyAxis)));
   }
 }

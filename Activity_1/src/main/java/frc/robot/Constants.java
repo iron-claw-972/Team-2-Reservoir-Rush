@@ -25,5 +25,7 @@ public final class Constants {
 
     //TODO: Set this to the controller port
     public static final int kControllerPort = -1;
+    public static final int kLeftJoyAxis = -1;
+    public static final int kRightJoyAxis = -1;
   }
 }

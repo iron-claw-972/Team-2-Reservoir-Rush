@@ -38,10 +38,22 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   /**
+   * Drives the robot using tank drive controls
+   * Tank drive is slightly easier to code but less intuitive to control, so this is here as an example for now
+   * @param leftPower the commanded power to the left motors
+   * @param rightPower the commanded power to the right motors
+   */
+
+  public void tankDrive(double leftPower, double rightPower) {
+    m_leftMotors.set(leftPower);
+    m_rightMotors.set(rightPower);
+  }
+
+  /**
    * Drives the robot using arcade controls.
    *
-   * @param fwd the commanded forward movement
-   * @param rot the commanded rotation
+   * @param forward the commanded forward movement
+   * @param turn the commanded turn rotation
    */
   public void arcadeDrive(double forward, double turn) {
     m_leftMotors.set(forward + turn);
