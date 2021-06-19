@@ -32,6 +32,7 @@ public class ArcadeDrive extends CommandBase {
 
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_forward.getAsDouble(), m_turn.getAsDouble());
+    //TODO: 2. execute arcade drive function from DriveSubsytem here (look at tankDrive for reference)
+  
   }
 }

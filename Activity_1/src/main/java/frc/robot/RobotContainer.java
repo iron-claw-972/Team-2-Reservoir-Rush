@@ -24,7 +24,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   // The driver's controller 
-  //TODO: go to Constants.java to set the right port
+  //TODO: 1. go to Constants.java to set the right port
   Joystick m_controller = new Joystick(DriveConstants.kControllerPort);
 
   /**
@@ -33,6 +33,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Configure default commands (will be run continously when nothing else is scheduled)
+    //TODO: 2. Switch this to a new ArcadeDrive (see ArcadeDrive.java)
     m_robotDrive.setDefaultCommand(
         new TankDrive(
             m_robotDrive,
