@@ -7,9 +7,13 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.DriveConstants;
@@ -17,27 +21,38 @@ import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
 
   //TODO: 1. Set the motor ports in Constants.java
-  /*TODO: 1. Set the motor to the right type (Talon, CAN, etc.) 
-  / See https://github.com/iron-claw-972/HowToProgramming for how to do this
+  /*TODO: 1. Set the motor to the right type (Talon, CAN, etc.).
+  / See https://github.com/iron-claw-972/HowToProgramming for how to do this. 
   / Make sure to set the right amount of motors! (if you only have 2 motors don't make 4)*/
+
+  TalonSRX leftMotor1 = new TalonSRX(DriveConstants.kLeftMotor1Port);
+  TalonSRX leftMotor2 = new TalonSRX(DriveConstants.kLeftMotor2Port);
   
-  WPI_TalonFX leftMotor1 = new WPI_TalonFX(DriveConstants.kLeftMotor1Port);
-  WPI_TalonFX leftMotor2 = new WPI_TalonFX(DriveConstants.kLeftMotor2Port);
-  WPI_TalonFX rightMotor1 = new WPI_TalonFX(DriveConstants.kRightMotor1Port);
-  WPI_TalonFX rightMotor2 = new WPI_TalonFX(DriveConstants.kRightMotor2Port);
+  TalonSRX rightMotor1 = new TalonSRX(DriveConstants.kRightMotor1Port);
+  TalonSRX rightMotor2 = new TalonSRX(DriveConstants.kRightMotor2Port);
 
-  // The motors on the left side of the drive.
-  private final SpeedControllerGroup m_leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
+  //how to set up sparkmaxes, if your robot has those
+  // CANSparkMax leftMotor1 = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
+  // CANSparkMax leftMotor2 = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
 
-  // The motors on the right side of the drive.
-  private final SpeedControllerGroup m_rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
+  // CANSparkMax rightMotor1 = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
+  // CANSparkMax rightMotor2 = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
   
   /**
    * Creates a new DriveSubsystem.
    */
   public DriveSubsystem() {
-    //TODO: 1. Your robot may need to have the left motors inverted and not the right
-    m_rightMotors.setInverted(true);
+    //TODO: 1. if you have multiple motors per side, you should have one main motor that the others "follow"
+    // however if you have 1 motor per side, then remove these
+    leftMotor2.set(ControlMode.Follower, DriveConstants.kLeftMotor1Port);
+    rightMotor2.set(ControlMode.Follower, DriveConstants.kRightMotor1Port);
+
+    //how to follow motors with sparkmaxes
+    // leftMotor2.follow(leftMotor1);
+    // rightMotor2.follow(rightMotor1);
+
+    //TODO: 1. Your robot may need to have the right motors inverted and not the left
+    leftMotor1.setInverted(true);
   }
 
   /**
@@ -48,8 +63,12 @@ public class DriveSubsystem extends SubsystemBase {
    */
 
   public void tankDrive(double leftPower, double rightPower) {
-    m_leftMotors.set(leftPower);
-    m_rightMotors.set(rightPower);
+    leftMotor1.set(ControlMode.PercentOutput, leftPower);
+    rightMotor1.set(ControlMode.PercentOutput, rightPower);
+
+    //if using a sparkmax
+    // leftMotor1.set(leftPower);
+    // rightMotor1.set(rightPower);
   }
 
   /**
@@ -58,7 +77,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param forward the commanded forward movement
    * @param turn the commanded turn rotation
    */
-  public void arcadeDrive(double forward, double turn) {
+  public void arcadeDrive(double throttle, double turn) {
     //TODO: 2. Add arcade drive here by setting the motors
   }
 }
