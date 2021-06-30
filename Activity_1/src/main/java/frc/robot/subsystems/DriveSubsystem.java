@@ -21,9 +21,9 @@ import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
 
   //TODO: 1. Set the motor ports in Constants.java
-  /*TODO: 1. Set the motor to the right type (Talon, CAN, etc.).
-  / See https://github.com/iron-claw-972/HowToProgramming for how to do this. 
-  / Make sure to set the right amount of motors! (if you only have 2 motors don't make 4)*/
+  //TODO: 1. Set the motor to the right type (Talon, CAN, etc.).
+  // See https://github.com/iron-claw-972/HowToProgramming for how to do this. 
+  // Make sure to set the right amount of motors! (if you only have 2 motors don't make 4)
 
   TalonSRX leftMotor1 = new TalonSRX(DriveConstants.kLeftMotor1Port);
   TalonSRX leftMotor2 = new TalonSRX(DriveConstants.kLeftMotor2Port);
