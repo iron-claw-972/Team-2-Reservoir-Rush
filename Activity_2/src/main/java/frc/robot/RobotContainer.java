@@ -36,11 +36,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Configure default commands (will be run continously when nothing else is scheduled)
-    //TODO: 2. Switch this to a new ArcadeDrive. You should update the method, as well as the
-    //ids for the joystick axis
-    
     m_robotDrive.setDefaultCommand(
-      new RunCommand(() -> m_robotDrive.tankDrive(
+      new RunCommand(() -> m_robotDrive.arcadeDrive(
         m_controller.getRawAxis(DriveConstants.kLeftJoyAxis),
         m_controller.getRawAxis(DriveConstants.kRightJoyAxis)),
       m_robotDrive
