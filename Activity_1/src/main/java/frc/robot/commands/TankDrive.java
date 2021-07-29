@@ -7,31 +7,26 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.Constants.DriveConstants;
 
-public class ArcadeDrive extends CommandBase {
+public class TankDrive extends CommandBase {
   private final DriveSubsystem m_drive;
-  private final DoubleSupplier m_forward;
-  private final DoubleSupplier m_turn;
 
   /**
-   * Creates a new ArcadeDrive.
+   * Creates a new TankDrive.
    *
    * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param turn The control input for turning
    */
-  public ArcadeDrive(DriveSubsystem subsystem, DoubleSupplier forward, DoubleSupplier turn) {
+  public TankDrive(DriveSubsystem subsystem) {
     m_drive = subsystem;
-    m_forward = forward;
-    m_turn = turn;
     addRequirements(m_drive);
   }
 
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_leftPow.getAsDouble(), m_rightPow.getAsDouble());
+    m_drive.tankDrive(RobotContainer.getMotorSpeed(DriveConstants.kLeftMotor1Port), RobotContainer.getMotorSpeed(DriveConstants.kRightMotor1Port));
   }
 }

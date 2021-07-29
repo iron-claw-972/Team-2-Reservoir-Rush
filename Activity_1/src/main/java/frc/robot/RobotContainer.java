@@ -8,9 +8,13 @@
 package frc.robot;
 
 import frc.robot.Constants.DriveConstants;
-import frc.robot.commands.*;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;;
 /**
@@ -20,14 +24,13 @@ import edu.wpi.first.wpilibj2.command.*;;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final ArcadeDrive m_autoCommand = new ArcadeDrive(m_robotDrive);
+
   // The driver's controller 
   //TODO: 1. go to Constants.java to set the right port
-  Joystick m_controller = new Joystick(DriveConstants.kControllerPort);
+  static Joystick controller = new Joystick(DriveConstants.kControllerPort);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -41,13 +44,9 @@ public class RobotContainer {
     //ids for the joystick axis
     
     m_robotDrive.setDefaultCommand(
-      new RunCommand(() -> m_robotDrive.tankDrive(
-        m_controller.getRawAxis(DriveConstants.kLeftJoyAxis),
-        m_controller.getRawAxis(DriveConstants.kRightJoyAxis)),
+      new RunCommand(() -> new TankDrive(m_robotDrive),
       m_robotDrive
     ));
-
-    
   }
 
     /**
@@ -60,6 +59,10 @@ public class RobotContainer {
 
   }
 
+  public static double getMotorSpeed(int port) {
+    // the vertical axis of the left joystick of the XboxController
+    return controller.getRawAxis(port);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -67,7 +70,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+    //for now, autonomous is Arcade drive
     return m_autoCommand;
   }
 
