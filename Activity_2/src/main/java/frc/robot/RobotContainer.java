@@ -37,7 +37,8 @@ public class RobotContainer {
 
     // Configure default commands (will be run continously when nothing else is scheduled)
     m_robotDrive.setDefaultCommand(
-      new RunCommand(() -> m_robotDrive.arcadeDrive(
+      new RunCommand(() -> new ArcadeDrive(
+        m_robotDrive,
         m_controller.getRawAxis(DriveConstants.kLeftJoyAxis),
         m_controller.getRawAxis(DriveConstants.kRightJoyAxis)),
       m_robotDrive
