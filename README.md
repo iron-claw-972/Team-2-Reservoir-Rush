@@ -1,7 +1,7 @@
 # Activities
 This is a template for Java activities we will do in class.
 
-At the beggining of the year all programmers will make a branch on this repository, with the name [Firstname][Lastname]\_Activites.
+At the beginning of the year all programmers will make a branch on this repository, with the name [Firstname][Lastname]\_Activites.
 All of the changes you need to make will be marked with a comment like this: `//TODO: 1. lorem ipsum`, and it is reccommended to do them in order (`//TODO: 1.` first, `//TODO: 2.` second)
 
 So, **YOU DO NOT NEED TO MAKE CHANGES UNLESS THERE IS A `//TODO:` COMMENT THERE**
