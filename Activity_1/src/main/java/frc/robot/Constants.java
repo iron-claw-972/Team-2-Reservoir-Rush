@@ -29,9 +29,4 @@ public final class Constants {
     public static final int kLeftJoyAxis = -1;
     public static final int kRightJoyAxis = -1;
   }
-
-  public static final class ButtonConstants {
-    //TODO: 1. Set this to the Button
-    public static final int kA = -1;
-   }
 }

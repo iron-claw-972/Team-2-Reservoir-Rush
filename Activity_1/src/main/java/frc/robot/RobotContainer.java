@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
-
-import frc.robot.commands.UpdateDefault;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -55,12 +53,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Do Tank Drive when the 'A' button is pressed.
-    //TODO: 2. Add more commands! Each person in your group 
-    // should add 1 state, and it buttons should activate the states
-    // see this and UpdateDefault.java as an example
-    new JoystickButton(controller, ButtonConstants.kA)
-    .whenPressed(new UpdateDefault(m_robotDrive, () -> new TankDrive(m_robotDrive)));
+
   }
 
   public static double getMotorSpeed(int port) {
