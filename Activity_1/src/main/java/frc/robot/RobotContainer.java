@@ -22,9 +22,13 @@ import edu.wpi.first.wpilibj2.command.*;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  
+  //subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final ArcadeDrive m_autoCommand = new ArcadeDrive(m_robotDrive);
+
+  //autonomous command, will spin robot in circle
+  private final Command m_autoCommand =   new RunCommand(
+    () -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive);
 
   // The driver's controller 
   //TODO: 1. go to Constants.java to set the right port
@@ -57,7 +61,7 @@ public class RobotContainer {
   }
 
   public static double getMotorSpeed(int port) {
-    // the vertical axis of the left joystick of the XboxController
+    // get a joystick axis
     return controller.getRawAxis(port);
   }
 
@@ -67,7 +71,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    //for now, autonomous is Arcade drive
+    //auto should spin in a circle
     return m_autoCommand;
   }
 }
