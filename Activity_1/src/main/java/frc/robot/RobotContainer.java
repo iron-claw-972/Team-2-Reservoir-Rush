@@ -30,8 +30,7 @@ public class RobotContainer {
     () -> m_robotDrive.tankDrive(0.2, -0.2),
     m_robotDrive);
 
-  // The driver's controller 
-  //TODO: 1. go to Constants.java to set the right port
+  // The driver's controller
   static Joystick controller = new Joystick(DriveConstants.kControllerPort);
 
   /**
