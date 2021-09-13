@@ -30,5 +30,7 @@ public class TankDrive extends CommandBase {
     m_drive.tankDrive(
       RobotContainer.getMotorSpeed(DriveConstants.kLeftJoyAxis), 
       RobotContainer.getMotorSpeed(DriveConstants.kRightJoyAxis));
-  }
+      System.out.println("driving");
+    }
+  
 }

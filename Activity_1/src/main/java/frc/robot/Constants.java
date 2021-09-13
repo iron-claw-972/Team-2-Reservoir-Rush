@@ -18,15 +18,15 @@ package frc.robot;
 public final class Constants {
   public static final class DriveConstants {
     //TODO: 1. Set this to the motor ports
-    public static final int kLeftMotor1Port = -1;
-    public static final int kLeftMotor2Port = -1;
-    public static final int kRightMotor1Port = -1;
-    public static final int kRightMotor2Port = -1;
+    public static final int kLeftMotor1Port = 1;
+    public static final int kLeftMotor2Port = 1;
+    public static final int kRightMotor1Port = 2;
+    public static final int kRightMotor2Port = 2;
 
     //TODO: 1. Set this to the controller port
     //TODO: 2. Change the joystick axis for arcade drive
-    public static final int kControllerPort = -1;
-    public static final int kLeftJoyAxis = -1;
-    public static final int kRightJoyAxis = -1;
+    public static final int kControllerPort = 0;
+    public static final int kLeftJoyAxis = 1;
+    public static final int kRightJoyAxis = 5;
   }
 }
