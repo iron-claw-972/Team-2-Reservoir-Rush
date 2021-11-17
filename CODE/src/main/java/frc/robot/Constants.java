@@ -22,6 +22,7 @@ public final class Constants {
     //public static final int kLeftMotor2Port = 2;
     public static final int kRightMotor1Port = 1;
     //public static final int kRightMotor2Port = 4;
+    public static final int kMotorPort3 = 3;
 
     //make sure your controller is 0
     public static final int kControllerPort = 0;
@@ -37,7 +38,11 @@ public final class Constants {
     public static final int kX = 3;
     public static final int kY = 4;
 
-    public static final int kLeftJoyAxis = -1;
-    public static final int kRightJoyAxis = -1;
+    public static final int kLeftJoyAxis = 1;
+    public static final int kRightJoyAxis = 5;
+
+    //intake power
+    public static final int intakePower = 1;
+    public static final int intakeOff = 0;
   }
 }

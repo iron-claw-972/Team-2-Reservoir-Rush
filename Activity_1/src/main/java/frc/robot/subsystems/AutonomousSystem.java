@@ -1,4 +1,3 @@
-/*
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -18,8 +17,10 @@ public class AutonomousSubsystem extends SubsystemBase {
   
   TalonSRX rightMotor1 = new TalonSRX(DriveConstants.kRightMotor1Port);
 
+  PIDController pid = new PIDController(kP, kI, kD);
+
+
   public AutonomousSubsystem() {
+    talon.getSensorCollection().getQuadraturePosition();
 
   }
-}
-*/

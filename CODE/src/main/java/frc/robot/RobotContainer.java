@@ -27,6 +27,8 @@ public class RobotContainer {
   //subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
+  private final IntakeSubsystem m_intakeSettings = new IntakeSubsystem();
+
   //autonomous command, will spin robot in circle
   private final Command m_autoCommand =   new RunCommand(
     () -> m_robotDrive.tankDrive(0.2, -0.2),
@@ -40,12 +42,12 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings();
+    //configureButtonBindings();
 
     // Configure default commands (will be run continously when nothing else is scheduled)
     
     m_robotDrive.setDefaultCommand(
-      new TankDrive(m_robotDrive)
+      new ArcadeDrive(m_robotDrive)
     );
   }
 
@@ -55,9 +57,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
 
+   /*
+  private void configureButtonBindings() {
+    
+    JoystickButton a = new JoystickButton(controller, DriveConstants.kA);
+    a.whenHeld(new RunCommand(() -> m_intakeSettings.intakeSpin()));
+    a.whenReleased(new RunCommand(() -> m_intakeSettings.intakeStop()));
+    
   }
+  */
 
   public static double getMotorSpeed(int port) {
     // get a joystick axis
