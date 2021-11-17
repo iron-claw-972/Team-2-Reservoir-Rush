@@ -8,8 +8,7 @@
 package frc.robot;
 
 import frc.robot.Constants.*;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.TankDrive;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -28,9 +27,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   //autonomous command, will spin robot in circle
-  private final Command m_autoCommand =   new RunCommand(
-    () -> m_robotDrive.tankDrive(0.2, -0.2),
-    m_robotDrive);
+  private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 200));
 
   // The driver's controller
   static Joystick controller = new Joystick(DriveConstants.kControllerPort);
