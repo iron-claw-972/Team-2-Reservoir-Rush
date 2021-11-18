@@ -54,7 +54,7 @@ public class DriveSubsystem extends SubsystemBase {
     // rightMotor2.follow(rightMotor1);
 
     //TODO: 1. Your robot may need to have the right motors inverted and not the left
-    leftMotor1.setInverted(true);
+    //leftMotor1.setInverted(true);
   }
 
   /**
@@ -80,7 +80,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param turn the commanded turn rotation
    */
   public void arcadeDrive(double throttle, double turn) {
-    leftMotor1.set(ControlMode.PercentOutput, throttle*speed + turn);
-    rightMotor1.set(ControlMode.PercentOutput, throttle*speed - turn);
+    leftMotor1.set(ControlMode.PercentOutput, (throttle + turn));
+    rightMotor1.set(ControlMode.PercentOutput, (throttle - turn));
   }
 }

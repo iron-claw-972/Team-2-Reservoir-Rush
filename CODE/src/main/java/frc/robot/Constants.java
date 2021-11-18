@@ -38,8 +38,8 @@ public final class Constants {
     public static final int kX = 3;
     public static final int kY = 4;
 
-    public static final int kLeftJoyAxis = 1;
-    public static final int kRightJoyAxis = 5;
+    public static final int kLeftJoyAxis = 4;
+    public static final int kRightJoyAxis = 1;
 
     //intake power
     public static final int intakePower = 1;
