@@ -42,7 +42,7 @@ public class DrivePID extends CommandBase {
 
     // Returns true when the command should end.
     public boolean isFinished() {
-      
-        return (current < goal);
+        // return false;
+        return (current > goal);
     }
   }

@@ -27,9 +27,9 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   //autonomous command, will spin robot in circle
-  // private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 200));
+  private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 2000));
 
-  
+  /*
   private final Command m_autoCommand = new SequentialCommandGroup(
     new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
     m_robotDrive),
@@ -59,8 +59,7 @@ public class RobotContainer {
     new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
     m_robotDrive),
 
-    /*new InstantCommand(() -> m_robotDrive.tankDrive(0.2, 0),
-    m_robotDrive),*/
+    //new InstantCommand(() -> m_robotDrive.tankDrive(0.2, 0),m_robotDrive),
 
     new WaitCommand(0.5),
 
@@ -75,6 +74,7 @@ public class RobotContainer {
     new WaitCommand(0.5)
     
     );
+    */
 
 
   // The driver's controller
