@@ -26,15 +26,26 @@ public class DrivePID extends CommandBase {
   
     // Called when the command is initially scheduled.
     public void initialize() {
-        current = 0; 
+      current = 0; 
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     public void execute() {
-        m_drive.arcadeDrive(0,-0.1);
-        current = current + 1;
-        System.out.println(current);
+      double maxOutput = 0.2;
+      double maxError = 2;
+      double error = m_drive.getGoal() - m_drive.getPosition();
+      double p_gain = 0.1;
+      double finalVal = error * p_gain;
+      if (finalVal > maxOutput){
+        finalVal = maxOutput;
+      }if (finalVal < -maxOutput) {
+        finalVal = -maxOutput;
+      }if (maxError > error && error > maxError) {
+        finalVal = 0;
+      }
+      m_drive.tankDrive(finalVal,finalVal);
     }
+    
     // Called once the command ends or is interrupted.
     public void end(boolean interrupted) {
         current = 0;
