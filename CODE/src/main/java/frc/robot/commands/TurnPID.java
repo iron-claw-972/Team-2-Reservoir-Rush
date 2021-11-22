@@ -5,12 +5,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
-public class DrivePID extends CommandBase {
+public class TurnPID extends CommandBase {
     private final DriveSubsystem m_drive;
     int current = 0;
     int goal; 
 
-    public DrivePID(DriveSubsystem subsystem, int goal_) {
+    public TurnPID(DriveSubsystem subsystem, int goal_) {
         m_drive = subsystem;
         addRequirements(m_drive);
         goal = goal_;
