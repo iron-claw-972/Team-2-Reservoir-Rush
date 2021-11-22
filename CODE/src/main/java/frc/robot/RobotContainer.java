@@ -29,6 +29,8 @@ public class RobotContainer {
 
   private final IntakeSubsystem m_intakeSettings = new IntakeSubsystem();
 
+  private final DoorSubsystem m_doorMove = new DoorSubsystem();
+
   //autonomous command, will spin robot in circle
   private final Command m_autoCommand =   new RunCommand(
     () -> m_robotDrive.tankDrive(0.2, -0.2),
@@ -58,15 +60,23 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-   /*
+   
   private void configureButtonBindings() {
     
     JoystickButton a = new JoystickButton(controller, DriveConstants.kA);
-    a.whenHeld(new RunCommand(() -> m_intakeSettings.intakeSpin()));
+    a.whenPressed(new RunCommand(() -> m_intakeSettings.intakeSpin()));
     a.whenReleased(new RunCommand(() -> m_intakeSettings.intakeStop()));
+
+    JoystickButton b = new JoystickButton(controller, DriveConstants.kB);
+    b.whenHeld(new RunCommand(() -> m_doorMove.doorMove()));
+    b.whenReleased(new RunCommand(() -> m_doorMove.doorStop()));
+
+    JoystickButton x = new JoystickButton(controller, DriveConstants.kX);
+    x.whenHeld(new RunCommand(() -> m_doorMove.doorMoveReverse()));
+    x.whenReleased(new RunCommand(() -> m_doorMove.doorStop()));
     
   }
-  */
+  
 
   public static double getMotorSpeed(int port) {
     // get a joystick axis

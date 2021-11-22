@@ -24,6 +24,8 @@ public final class Constants {
     //public static final int kRightMotor2Port = 4;
     public static final int kMotorPort3 = 3;
 
+    public static final int kMotorPort4 = 4;
+
     //make sure your controller is 0
     public static final int kControllerPort = 0;
 
