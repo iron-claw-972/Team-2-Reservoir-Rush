@@ -64,7 +64,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     JoystickButton a = new JoystickButton(controller, DriveConstants.kA);
-    a.whenPressed(new RunCommand(() -> m_intakeSettings.intakeSpin()));
+    a.whenHeld(new RunCommand(() -> m_intakeSettings.intakeSpin()));
     a.whenReleased(new RunCommand(() -> m_intakeSettings.intakeStop()));
 
     JoystickButton b = new JoystickButton(controller, DriveConstants.kB);
