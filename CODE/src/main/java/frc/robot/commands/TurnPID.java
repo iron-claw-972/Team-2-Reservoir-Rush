@@ -5,6 +5,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
+
+// just drive Pide with changes not finsihed
 public class TurnPID extends CommandBase {
     private final DriveSubsystem m_drive;
     int current = 0;
@@ -33,7 +35,7 @@ public class TurnPID extends CommandBase {
     public void execute() {
       double maxOutput = 0.2;
       double maxError = 2;
-      double error = goal - m_drive.getPosition();
+      double error = goal - (m_drive.getPositionLeft()-m_drive.getPositionRight());
       double p_gain = 0.1;
       double finalVal = error * p_gain;
       if (finalVal > maxOutput){
@@ -43,7 +45,7 @@ public class TurnPID extends CommandBase {
       }if (maxError > error && error > maxError) {
         finalVal = 0;
       }
-      m_drive.tankDrive(finalVal,finalVal);
+      m_drive.tankDrive(finalVal,-finalVal);
     }
     
     // Called once the command ends or is interrupted.

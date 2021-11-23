@@ -8,9 +8,9 @@ import frc.robot.Constants.DriveConstants;
 public class DrivePID extends CommandBase {
     private final DriveSubsystem m_drive;
     int current = 0;
-    int goal; 
+    double goal; 
 
-    public DrivePID(DriveSubsystem subsystem, int goal_) {
+    public DrivePID(DriveSubsystem subsystem, double goal_) {
         m_drive = subsystem;
         addRequirements(m_drive);
         goal = goal_;
@@ -26,14 +26,16 @@ public class DrivePID extends CommandBase {
   
     // Called when the command is initially scheduled.
     public void initialize() {
-      current = 0; 
+      current = 0;
+      // 0 encoders 
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     public void execute() {
       double maxOutput = 0.2;
       double maxError = 2;
-      double error = goal - m_drive.getPosition();
+      double error = goal - (m_drive.getPositionLeft()+m_drive.getPositionRight());
+      System.out.println(m_drive.getPositionLeft()+m_drive.getPositionRight());
       double p_gain = 0.1;
       double finalVal = error * p_gain;
       if (finalVal > maxOutput){
