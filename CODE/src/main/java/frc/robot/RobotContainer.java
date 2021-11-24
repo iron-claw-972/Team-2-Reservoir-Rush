@@ -28,7 +28,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   //autonomous command, will spin robot in circle
-  private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 50000));
+  private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 50000), new TurnPID(m_robotDrive, 50000));
 
   /*
   private final Command m_autoCommand = new SequentialCommandGroup(

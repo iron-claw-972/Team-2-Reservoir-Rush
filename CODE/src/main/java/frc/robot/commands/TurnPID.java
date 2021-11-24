@@ -5,7 +5,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
-public class DrivePID extends CommandBase {
+public class TurnPID extends CommandBase {
     private final DriveSubsystem m_drive;
     double error = 0;
     double goal;
@@ -13,10 +13,10 @@ public class DrivePID extends CommandBase {
     double startingRight;
     boolean finsihed;
 
-    public DrivePID(DriveSubsystem subsystem, double goal_) {
+    public TurnPID(DriveSubsystem subsystem, double goal_) {
         m_drive = subsystem;
         addRequirements(m_drive);
-        goal = -goal_;
+        goal = goal_;
       }
     /*
     private final ExampleSubsystem m_subsystem;
@@ -40,7 +40,7 @@ public class DrivePID extends CommandBase {
       double maxOutput = 0.2;
       double maxError = 25;
       
-      error = goal - ((m_drive.getPositionLeft()- startingLeft) + (m_drive.getPositionRight()-startingRight))/2;
+      error = goal - ((m_drive.getPositionLeft()- startingLeft) - (m_drive.getPositionRight()-startingRight))/2;
       
       double p_gain = 0.1;
       double finalVal = error * p_gain;
@@ -52,7 +52,7 @@ public class DrivePID extends CommandBase {
         finalVal = 0;
         finsihed = true;
       }
-      m_drive.tankDrive(finalVal,finalVal);
+      m_drive.tankDrive(finalVal,-finalVal);
     }
     
     // Called once the command ends or is interrupted.
