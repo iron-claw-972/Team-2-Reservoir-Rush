@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
 
-import javax.naming.spi.DirContextStringPair;
+// import javax.naming.spi.DirContextStringPair;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 /**
@@ -33,12 +33,12 @@ public class RobotContainer {
   private final Command m_autoCommand =   new SequentialCommandGroup(    
   //start intake
     new DrivePID(m_robotDrive, 18 * DriveConstants.feetRatio),
-    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
     new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
-    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
     new DrivePID(m_robotDrive, 7 * DriveConstants.feetRatio),
-    new TurnPID(m_robotDrive,  -1 * DriveConstants.turn90Value),
-    new DrivePID(m_robotDrive, 3 * DriveConstants.feetRatio)
+    new TurnPID(m_robotDrive,  -1 * DriveConstants.turn90Ratio),
+    new DrivePID(m_robotDrive, -3 * DriveConstants.feetRatio)
     //dump
 
 
