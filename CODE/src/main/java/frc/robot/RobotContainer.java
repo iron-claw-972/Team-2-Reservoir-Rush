@@ -4,17 +4,19 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+// the intake 1 to 10 door 1 to 50
 
 package frc.robot;
 
 import frc.robot.Constants.*;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.TankDrive;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
+
+import javax.naming.spi.DirContextStringPair;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 /**
@@ -28,16 +30,76 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   //autonomous command, will spin robot in circle
-  private final Command m_autoCommand =   new RunCommand(
-    () -> m_robotDrive.tankDrive(0.2, -0.2),
-    m_robotDrive);
+  private final Command m_autoCommand =   new SequentialCommandGroup(    
+  //start intake
+    new DrivePID(m_robotDrive, 18 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 7 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  -1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 3 * DriveConstants.feetRatio)
+    //dump
+
+
+    //code for seting veriables
+    // new DrivePID(m_robotDrive, 1 * DriveConstants.feetRatio),
+    // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value)
+    );
+
+  /*
+  private final Command m_autoCommand = new SequentialCommandGroup(
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(3),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(-0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(0.5),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(3),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(-0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(0.5),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(3),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    //new InstantCommand(() -> m_robotDrive.tankDrive(0.2, 0),m_robotDrive),
+
+    new WaitCommand(0.5),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(3),
+
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+
+    new WaitCommand(0.5)
+    
+    );
+    */
+
 
   // The driver's controller
   static Joystick controller = new Joystick(DriveConstants.kControllerPort);
 
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
+  //The container for the robot.  Contains subsystems, OI devices, and commands.
+   
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
@@ -45,7 +107,7 @@ public class RobotContainer {
     // Configure default commands (will be run continously when nothing else is scheduled)
     
     m_robotDrive.setDefaultCommand(
-      new TankDrive(m_robotDrive)
+      new ArcadeDrive(m_robotDrive)
     );
   }
 
@@ -55,7 +117,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
+  
+   private void configureButtonBindings() {
 
   }
 
