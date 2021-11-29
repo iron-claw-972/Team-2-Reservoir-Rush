@@ -25,7 +25,8 @@ public final class Constants {
     public static final int kRightMotor1Port = 1;
     public static final int kRightMotor2Port = 18;
 
-    public static final double turnRatio = 1;
+    public static final double turn90Ratio = 14750;
+    public static final double feetRatio = 50000;
 
     //make sure your controller is 0
     public static final int kControllerPort = 0;

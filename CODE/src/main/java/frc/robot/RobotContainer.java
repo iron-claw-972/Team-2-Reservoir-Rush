@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
 
+import javax.naming.spi.DirContextStringPair;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -28,7 +30,22 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   //autonomous command, will spin robot in circle
-  private final Command m_autoCommand =   new SequentialCommandGroup(new DrivePID(m_robotDrive, 50000), new TurnPID(m_robotDrive, 14750));
+  private final Command m_autoCommand =   new SequentialCommandGroup(    
+  //start intake
+    new DrivePID(m_robotDrive, 18 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 7 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  -1 * DriveConstants.turn90Value),
+    new DrivePID(m_robotDrive, 3 * DriveConstants.feetRatio)
+    //dump
+
+
+    //code for seting veriables
+    // new DrivePID(m_robotDrive, 1 * DriveConstants.feetRatio),
+    // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value)
+    );
 
   /*
   private final Command m_autoCommand = new SequentialCommandGroup(
