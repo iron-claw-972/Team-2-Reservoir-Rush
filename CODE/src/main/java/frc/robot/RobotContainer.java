@@ -31,7 +31,7 @@ public class RobotContainer {
 
   //autonomous command, will spin robot in circle
   private final Command m_autoCommand =   new SequentialCommandGroup(    
-  //start intake
+    //start intake
     new DrivePID(m_robotDrive, 18 * DriveConstants.feetRatio),
     new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
     new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
@@ -45,7 +45,7 @@ public class RobotContainer {
     //code for seting veriables
     // new DrivePID(m_robotDrive, 1 * DriveConstants.feetRatio),
     // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value)
-    );
+  );
 
   /*
   private final Command m_autoCommand = new SequentialCommandGroup(
