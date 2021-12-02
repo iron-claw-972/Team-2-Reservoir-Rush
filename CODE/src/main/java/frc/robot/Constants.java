@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import frc.robot.commands.TurnPID;
-
 /**
  * The Constants class provides a convenient place to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -19,27 +17,24 @@ import frc.robot.commands.TurnPID;
  */
 public final class Constants {
   public static final class DriveConstants {
-
-    public static final int kLeftMotor1Port = 14;
-    public static final int kLeftMotor2Port = 15;
-    public static final int kRightMotor1Port = 1;
-    public static final int kRightMotor2Port = 18;
-
-    public static final double turn90Ratio = 14950;
-    public static final double feetRatio = 5000;
+    //TODO: 1. Set this to the motor ports
+    public static final int kLeftMotor1Port =4;
+    public static final int kDoorMotorPort = 1;
+    public static final int kRightMotor1Port = 2;
+    public static final int kIntakeMotorPort = 3;
 
     //make sure your controller is 0
     public static final int kControllerPort = 0;
 
-    public static final int kLeftXJoyAxis = 0;
-    public static final int kLeftYJoyAxis = 1;
-    public static final int kRightXJoyAxis = 4;
-    public static final int kRightYJoyAxis = 5;
-
-    //buttons
-    public static final int kA = 1;
-    public static final int kB = 2;
-    public static final int kX = 3;
-    public static final int kY = 4;
+    //TODO: 1. Set the joystick axis
+    public static final int kLeftJoyAxis = 4;
+    public static final int kRightJoyAxis = 1;
+  }
+  public static final class ButtonConstants{
+      public static final int kA = 1;
+      public static final int kB = 2;
+      public static final int kX = 3;
+      public static final int kBL = 5;
+      public static final int kBR = 6;
   }
 }
