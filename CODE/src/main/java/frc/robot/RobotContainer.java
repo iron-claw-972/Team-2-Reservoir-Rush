@@ -29,9 +29,9 @@ public class RobotContainer {
   //autonomous command, will spin robot in circle
   private final Command m_autoCommand =   new SequentialCommandGroup(
     //start intake
-    new InstantCommand(() -> m_intake.intakeSpin()),
+    // new InstantCommand(() -> m_intake.intakeSpin()),
 
-    new DrivePID(m_robotDrive, 2 * DriveConstants.feetRatio)
+    new DrivePID(m_robotDrive, 3 * DriveConstants.feetRatio)
     // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
     // new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
     // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
@@ -82,7 +82,7 @@ public class RobotContainer {
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */+
+   */
    
   public RobotContainer() {
     // Configure the button bindings
