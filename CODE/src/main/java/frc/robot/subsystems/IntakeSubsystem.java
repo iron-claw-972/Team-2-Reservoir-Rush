@@ -20,7 +20,7 @@ import frc.robot.Constants.DriveConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-  TalonSRX motor3 = new TalonSRX(3);
+  TalonSRX motor3 = new TalonSRX(DriveConstants.kIntakeMotorPort);
 
   public void intakeSpin() {
     motor3.set(ControlMode.PercentOutput, -0.75);
