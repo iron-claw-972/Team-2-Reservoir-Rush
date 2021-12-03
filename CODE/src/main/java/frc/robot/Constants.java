@@ -25,7 +25,7 @@ public final class Constants {
     
 
     public static final double turn90Ratio = 14950;
-    public static final double feetRatio = 5000;
+    public static final double feetRatio = 200;
     
     //make sure your controller is 0
     public static final int kControllerPort = 0;

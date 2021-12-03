@@ -63,7 +63,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void tankDrive(double leftPower, double rightPower) {
     leftMotor1.set(ControlMode.PercentOutput, leftPower);
-    rightMotor1.set(ControlMode.PercentOutput, rightPower);
+    rightMotor1.set(ControlMode.PercentOutput, -rightPower);
 
     //if using a sparkmax
     // leftMotor1.set(leftPower);
