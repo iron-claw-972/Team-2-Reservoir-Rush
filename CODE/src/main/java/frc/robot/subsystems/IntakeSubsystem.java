@@ -29,4 +29,12 @@ public class IntakeSubsystem extends SubsystemBase {
   public void intakeStop() {
     motor3.set(ControlMode.PercentOutput, 0);
   }
+
+  public void intakeFast() {
+    motor3.set(ControlMode.PercentOutput, -1);
+  }
+
+  public void intakeReverse() {
+    motor3.set(ControlMode.PercentOutput, 0.75);
+  }
 }

@@ -77,6 +77,15 @@ public class DriveSubsystem extends SubsystemBase {
    * @param turn the commanded turn rotation
    */
   public void arcadeDrive(double throttle, double turn) {
-    leftMotor1.set(ControlMode.PercentOutput, throttle + turn);
-    rightMotor1.set(ControlMode.PercentOutput, throttle - turn);  }
+    leftMotor1.set(ControlMode.PercentOutput, throttle-turn);
+    rightMotor1.set(ControlMode.PercentOutput, throttle+turn);
+  }
+
+  public double getPositionLeft() {
+    return leftMotor1.getSelectedSensorPosition();
+  }
+
+  public double getPositionRight  () {
+    return rightMotor1.getSelectedSensorPosition();
+  }
 }

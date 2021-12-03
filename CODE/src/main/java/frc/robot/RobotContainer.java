@@ -8,8 +8,7 @@
 package frc.robot;
 
 import frc.robot.Constants.*;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.TankDrive;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -28,9 +27,53 @@ public class RobotContainer {
   private final DoorSubsystem m_door = new DoorSubsystem();
 
   //autonomous command, will spin robot in circle
-  private final Command m_autoCommand =   new RunCommand(
-    () -> m_robotDrive.tankDrive(0.2, -0.2),
-    m_robotDrive);
+  private final Command m_autoCommand =   new SequentialCommandGroup(    
+    //start intake
+    new DrivePID(m_robotDrive, 18 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
+    new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
+    new DrivePID(m_robotDrive, 7 * DriveConstants.feetRatio),
+    new TurnPID(m_robotDrive,  -1 * DriveConstants.turn90Ratio),
+    new DrivePID(m_robotDrive, -3 * DriveConstants.feetRatio)
+    //dump
+
+
+    //code for seting veriables
+    // new DrivePID(m_robotDrive, 1 * DriveConstants.feetRatio),
+    // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Value)
+  );
+
+  /*
+  private final Command m_autoCommand = new SequentialCommandGroup(
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(3),
+    new InstantCommand(() -> m_robotDrive.tankDrive(-0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(0.5),
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(3),
+    new InstantCommand(() -> m_robotDrive.tankDrive(-0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(0.5),
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(3),
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    //new InstantCommand(() -> m_robotDrive.tankDrive(0.2, 0),m_robotDrive),
+    new WaitCommand(0.5),
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(3),
+    new InstantCommand(() -> m_robotDrive.tankDrive(0.2, -0.2),
+    m_robotDrive),
+    new WaitCommand(0.5)
+    
+    );
+    */
 
   // The driver's controller
   static Joystick controller = new Joystick(DriveConstants.kControllerPort);
@@ -60,6 +103,10 @@ public class RobotContainer {
     new JoystickButton(controller, 1).whenPressed(new InstantCommand(() -> m_intake.intakeSpin()));
 
     new JoystickButton(controller, 2).whenPressed(new InstantCommand(() -> m_intake.intakeStop()));
+
+    new JoystickButton(controller, 4).whenPressed(new InstantCommand(() -> m_intake.intakeFast()));
+
+    new JoystickButton(controller, 3).whenPressed(new InstantCommand(() -> m_intake.intakeReverse()));
 
     JoystickButton leftBump = new JoystickButton(controller, ButtonConstants.kBL);
     leftBump.whenHeld(new RunCommand(() -> m_door.doorSpin()));
