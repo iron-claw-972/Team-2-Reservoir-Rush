@@ -31,7 +31,7 @@ public class RobotContainer {
     //start intake
     // new InstantCommand(() -> m_intake.intakeSpin()),
 
-    new DrivePID(m_robotDrive, 4 * DriveConstants.feetRatio)
+    new DrivePID(m_robotDrive, 2.5 * DriveConstants.feetRatio)
     // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
     // new DrivePID(m_robotDrive, 6 * DriveConstants.feetRatio),
     // new TurnPID(m_robotDrive,  1 * DriveConstants.turn90Ratio),
